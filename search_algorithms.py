@@ -4,14 +4,14 @@ from scipy.constants import sigma
 
 
 ## We will append tuples (state, "action") in the search queue
-def breadth_first_search(startState, action_list, goal_test, use_closed_list=True) :
+def breadth_first_search(start_state, action_list, goal_test, use_closed_list=True) :
     search_queue = deque()
     closed_list = {}
     states = 0
 
-    search_queue.append((startState,""))
+    search_queue.append((start_state, ""))
     if use_closed_list :
-        closed_list[startState] = True
+        closed_list[start_state] = True
     while len(search_queue) > 0 :
         ## this is a (state, "action") tuple
         next_state = search_queue.popleft()
@@ -36,14 +36,14 @@ def breadth_first_search(startState, action_list, goal_test, use_closed_list=Tru
 ### Note the similarity to BFS - the only difference is the search queue
 
 ## use the limit parameter to implement depth-limited search
-def depth_first_search(startState, action_list, goal_test, use_closed_list=True, limit=0) :
+def depth_first_search(start_state, action_list, goal_test, use_closed_list=True, limit=0) :
     search_queue = deque()
     closed_list = {}
     states = 0
 
-    search_queue.append((startState,""))
+    search_queue.append((start_state, ""))
     if use_closed_list :
-        closed_list[startState] = True
+        closed_list[start_state] = True
     while len(search_queue) > 0 :
         ## this is a (state, "action") tuple
         next_state = search_queue.pop()
