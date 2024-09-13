@@ -1,10 +1,11 @@
 from queue import PriorityQueue
+from math import sqrt
 
 class map_state() :
     ## f = total estimated cost
     ## g = cost so far
     ## h = estimated cost to goal
-    def __init__(self, location="", mars_graph=None,
+    def __init__(self, location=(1,1), mars_graph=None,
                  prev_state=None, g=0,h=0):
         self.location = location
         self.mars_graph = mars_graph
@@ -20,7 +21,7 @@ class map_state() :
         return hash(self.location)
 
     def __repr__(self):
-        return "(%s)" % (self.location)
+        return self.location.__repr__()
 
     def __lt__(self, other):
         return self.f < other.f
@@ -29,7 +30,7 @@ class map_state() :
         return self.f <= other.f
 
     def is_goal(self):
-        return self.location == '1,1'
+        return self.location == (1,1)
 
 
 def a_star(start_state, heuristic_fn, goal_test, use_closed_list=True) :
@@ -45,7 +46,7 @@ def h1(state) :
 
 ## you do this - return the straight-line distance between the state and (1,1)
 def sld(state) :
-    sqt(a^ + b2)
+    return sqrt((state.location[0]-1)**2 + (state.location[1]-1)**2)
 
 ## you implement this. Open the file filename, read in each line,
 ## construct a Graph object and assign it to self.mars_graph().
