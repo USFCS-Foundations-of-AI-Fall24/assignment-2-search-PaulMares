@@ -60,13 +60,6 @@ def depth_first_search(start_state, action_list, goal_test, use_closed_list=True
             if use_closed_list:
                 successors = [item for item in successors
                                     if item[0] not in closed_list]
-
-                for item in successors:
-                    if any(item[0] is key or item[0] == key for key in closed_list):
-                        print(item[0])
-                        print(any(key if key == item[0] else None for key in closed_list))
-                        print(item[0] in closed_list)
-                        print()
                 for s in successors:
                     closed_list[s[0]] = True
             search_queue.extend(successors)
