@@ -55,7 +55,7 @@ def depth_first_search(start_state, action_list, goal_test, use_closed_list=True
                 ptr = ptr.prev
             print(f"Generated {states} states")
             return next_state
-        elif next_state[0].depth <= limit or limit <= 0:
+        elif next_state[0].depth < limit or limit <= 0:
             successors = next_state[0].successors(action_list)
             if use_closed_list:
                 successors = [item for item in successors
