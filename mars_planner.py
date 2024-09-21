@@ -43,7 +43,7 @@ class RoverState :
                 f"Depth: {self.depth}")
 
     def __hash__(self):
-        return ("%s %s %s %s % s" % (self.loc,
+        return ("%s %s %s %s %s" % (self.loc,
                                      self.sample_extracted,
                                      self.holding_sample,
                                      self.holding_tool,
@@ -132,7 +132,18 @@ action_list = [charge, drop_sample,
 
 def battery_goal(state):
     return state.loc == "battery"
-## add your goals here.
+
+def move_to_sample(state):
+    return (state.loc == "sample" and
+            state.holding_tool)
+
+def remove_sample(state):
+    return (state.loc == "sample" and
+            state.holding_sample and
+            state.sample_extracted)
+
+def return_to_charger(state):
+    return state.loc == "battery"
 
 def mission_complete(state):
     return (state.loc == "battery" and
@@ -143,7 +154,9 @@ def mission_complete(state):
 
 if __name__=="__main__":
     s = RoverState()
-    result = search_algorithms.depth_first_search(s, action_list, mission_complete, limit=7)
+    result = search_algorithms.breadth_first_search(s, action_list, mission_complete )[0]
+#    result = search_algorithms.breadth_first_search(result, action_list, remove_sample)[0]
+#    result = search_algorithms.breadth_first_search(result, action_list, mission_complete)[0]
     print(result)
 
 
