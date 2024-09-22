@@ -154,9 +154,9 @@ def mission_complete(state):
 
 if __name__=="__main__":
     s = RoverState()
-    result = search_algorithms.breadth_first_search(s, action_list, mission_complete )[0]
-#    result = search_algorithms.breadth_first_search(result, action_list, remove_sample)[0]
-#    result = search_algorithms.breadth_first_search(result, action_list, mission_complete)[0]
+    result = search_algorithms.depth_first_search(s, action_list, move_to_sample, use_closed_list=True, limit=7)[0]
+    result = search_algorithms.depth_first_search(result, action_list, remove_sample, use_closed_list=True, limit=7)[0]
+    result = search_algorithms.depth_first_search(result, action_list, mission_complete, use_closed_list=True, limit=7)[0]
     print(result)
 
 
